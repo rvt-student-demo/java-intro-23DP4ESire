@@ -3,26 +3,15 @@ package lv.rvt;
 import java.util.*;
 public class App 
 {
-    public static void main(String[] args )
-    {
-        Scanner scanner = new Scanner(System.in);
-     
+    public static void main(String[] args) {
+    int[] val = {0, 1, 2, 3}; 
 
-        System.out.print("How many times? ");
-        int count = scanner.nextInt();
+    int sum = 0;
 
-        int i = 0;
-        while (i < count) {
-            printText();
-            i++;
-        }
-                
-        scanner.close();
-        
+    for (int number : val) {
+        sum += number;
     }
+    System.out.println( "Sum of all numbers = " + sum);
 
-    public static void printText() {
-        System.out.println("In a hole in the ground there lived a method");
     }
-  
 }
