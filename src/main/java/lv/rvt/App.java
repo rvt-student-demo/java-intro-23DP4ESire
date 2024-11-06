@@ -4,49 +4,22 @@ import java.util.*;
 public class App 
 {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        List<String> names = new ArrayList<>();
-        List<Integer> birthYears = new ArrayList<>();
 
-        System.out.println("Enter name and birth year (name,year) or press Enter to finish:");
-
-        while (true) {
-            String entry = scanner.nextLine();
-            if (entry.isEmpty()) {
-                break;
-            }
-            String[] parts = entry.split(",");
-            if (parts.length == 2) {
-                String name = parts[0].trim();
-                try {
-                    int year = Integer.parseInt(parts[1].trim());
-                    names.add(name);
-                    birthYears.add(year);
-                } catch (NumberFormatException e) {
-                    System.out.println("Invalid year format. Please enter a valid year.");
-                }
-            } else {
-                System.out.println("Invalid input format. Please enter in the format 'name,year'.");
-            }
-        }
-
-        if (!names.isEmpty() && !birthYears.isEmpty()) {
-            String longestName = names.get(0);
-            for (String name : names) {
-                if (name.length() > longestName.length()) {
-                    longestName = name;
-                }
-            }
-
-            double averageBirthYear = birthYears.stream()
-                                                 .mapToInt(Integer::intValue)
-                                                 .average()
-                                                 .orElse(0.0);
-
-            System.out.printf("\nLongest name: %s%n", longestName);
-            System.out.printf("Average of the birth years: %.1f%n", averageBirthYear);
-        }
-
-        scanner.close();    
+        Account artosAccount = new Account("Arto's account", 100.00);
+        Account artosSwissAccount = new Account("Arto's account in Switzerland", 1000000.00);
+        
+        System.out.println("Initial state");
+        System.out.println(artosAccount);
+        System.out.println(artosSwissAccount);
+        
+        artosAccount.withdraw(20);
+        System.out.println("The balance of Arto's account is now: " + artosAccount.balance());
+        artosSwissAccount.deposit(200);
+        System.out.println("The balance of Arto's other account is now: " + artosSwissAccount.balance());
+        
+        System.out.println("End state");
+        System.out.println(artosAccount);
+        System.out.println(artosSwissAccount);   
+         
     }
 }
