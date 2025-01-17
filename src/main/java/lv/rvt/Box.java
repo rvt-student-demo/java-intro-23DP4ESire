@@ -20,7 +20,19 @@ public class Box {
   }
 
   public double area() {
-      return 2 * (width * height + width * length + height * length);
+      return 2 * faceArea() + 2 * topArea() + 2 * sideArea();
+  }
+
+  private double faceArea() {
+      return width * height;
+  }
+
+  private double topArea() {
+      return width * length;
+  }
+
+  private double sideArea() {
+      return height * length;
   }
 
   public double getWidth() {
