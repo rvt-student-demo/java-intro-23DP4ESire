@@ -1,6 +1,8 @@
 package lv.rvt;
 
 public class Box {
+
+  
   private final double width;
   private final double height;
   private final double length;
