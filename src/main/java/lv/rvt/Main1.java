@@ -1,27 +1,36 @@
 package lv.rvt;
 
 public class Main1 {
-    public static void main1(String[] args) {
-        PaymentCard paulsCard = new PaymentCard(20);
-        PaymentCard mattsCard = new PaymentCard(30);
+    public static void main(String[] args) {
+        Book book1 = new Book("Fyodor Dostoevsky", "Crime and Punishment", 2);
+        Book book2 = new Book("Robert Martin", "Clean Code", 1);
+        Book book3 = new Book("Kent Beck", "Test Driven Development", 0.5);
 
-        paulsCard.eatHeartily();
-        System.out.println("Paul: " + paulsCard);
+        CD cd1 = new CD("Pink Floyd", "Dark Side of the Moon", 1973);
+        CD cd2 = new CD("Wigwam", "Nuclear Nightclub", 1975);
+        CD cd3 = new CD("Rendezvous Park", "Closer to Being Here", 2012);
 
-        mattsCard.eatAffordably();
-        System.out.println("Matt: " + mattsCard);
+        System.out.println(book1);
+        System.out.println(book2);
+        System.out.println(book3);
+        System.out.println(cd1);
+        System.out.println(cd2);
+        System.out.println(cd3);
 
-        paulsCard.addMoney(20);
-        System.out.println("Paul: " + paulsCard);
+        Box box = new Box(10);
 
-        mattsCard.eatHeartily();
-        System.out.println("Matt: " + mattsCard);
+        box.add(new Book("Fyodor Dostoevsky", "Crime and Punishment", 2));
+        box.add(new Book("Robert Martin", "Clean Code", 1));
+        box.add(new Book("Kent Beck", "Test Driven Development", 0.7));
 
-        paulsCard.eatAffordably();
-        paulsCard.eatAffordably();
-        System.out.println("Paul: " + paulsCard);
-        
-        mattsCard.addMoney(50);
-        System.out.println("Matt: " + mattsCard);
+        box.add(new CD("Pink Floyd", "Dark Side of the Moon", 1973));
+        box.add(new CD("Wigwam", "Nuclear Nightclub", 1975));
+        box.add(new CD("Rendezvous Park", "Closer to Being Here", 2012));
+
+        System.out.println(box);
+
+        Box box2 = new Box(5);
+        box2.add(box);
+        System.out.println(box2);
     }
 }

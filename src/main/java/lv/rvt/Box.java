@@ -1,43 +1,42 @@
 package lv.rvt;
 
-public class Box {
+import java.util.ArrayList;
+import java.util.List;
 
-  
-  private final double width;
-  private final double height;
-  private final double length;
+public class Box implements Packable {
+    private double capacity;
+    private List<Packable> items;
 
-  public Box(double width, double height, double length) {
-      this.width = width;
-      this.height = height;
-      this.length = length;
-  }
+    public Box(double capacity) {
+        this.capacity = capacity;
+        this.items = new ArrayList<>();
+    }
 
-  public Box(double side) {
-      this(side, side, side);
-  }
+    public void add(Packable item) {
+        if (this.weight() + item.weight() <= this.capacity) {
+            this.items.add(item);
+        } else {
+            System.out.println("The box is full. Cannot add " + item);
+        }
+    }
 
-  public double volume() {
-      return width * height * length;
-  }
+    @Override
+    public double weight() {
+        double weight = 0;
+        for (Packable item : this.items) {
+            weight += item.weight();
+        }
+        return weight;
+    }
 
-  public double area() {
-      return 2 * (width * height + width * length + height * length);
-  }
-
-  public boolean nests(Box outsideBox) {
-      return this.width <= outsideBox.width && this.height <= outsideBox.height && this.length <= outsideBox.length;
-  }
-
-  public double getWidth() {
-      return width;
-  }
-
-  public double getHeight() {
-      return height;
-  }
-
-  public double getLength() {
-      return length;
-  }
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Box: ");
+        for (Packable item : this.items) {
+            sb.append(item.toString()).append("\n");
+        }
+        sb.append("Total weight: ").append(this.weight()).append(" kg");
+        return sb.toString();
+    }
 }
